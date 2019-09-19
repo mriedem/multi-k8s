@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-ip-service
+spec:
+  type: ClusterIP
+  # Provide access to the client deployment.
+  selector:
+    component: web
+  ports:
+    # The port values could be different but not necessary for this project.
+    - port: 3000
+      targetPort: 3000

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  # We want 3 pods in this deployment using the same container image.
+  replicas: 3
+  # This deployment is going to manage the 'web' component.
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: mriedem/multi-client
+          ports:
+            - containerPort: 3000
